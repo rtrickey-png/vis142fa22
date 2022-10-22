@@ -19,30 +19,19 @@ transform = 0
 for h in range(height):
     row = []
     for w in range(width):
-        #i = 0
         for x in treedata[h,(w+130),:3]:
-            #if i == 2:
-            #   continue
             if x == 0:
-                transform = h
+                transform = h + random.randint(0, h //2)
             row.append((x + transform) % 256)
-            # i+=1
     imagedata.append(row)
 
+# imagadata is a list
+random.shuffle(imagedata)
 
-# now try to transform chunks
-# for h in range(height):
-#     for w in range(width):
-
-np_imagedata = numpy.array(imagedata)
-
-def swap_cols(np_arr, start_index, last_index):
+# def swap_cols(np_arr, start_index, last_index):
     # print('start:%d end: %d' % (start_index, last_index))
-    np_arr[:, [start_index, last_index]] = np_arr[:, [last_index, start_index]]
+    # np_arr[:, [start_index, last_index]] = np_arr[:, [last_index, start_index]]
 
 
-for i in range (width):
-    swap_cols(np_imagedata, (random.randint(0, width)), (random.randint(0,width)))
-imagedata = list(np_imagedata)
-new_tree = png.fromarray(np_imagedata, 'RGB')
+new_tree = png.from_array(imagedata, 'RGB')
 new_tree.save("new_tree.png")

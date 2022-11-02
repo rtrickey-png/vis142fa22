@@ -17,13 +17,18 @@ height = 300
 
 imagedata = []
 transform = 0
-pad = random.randint(0, len(treedata[0])) % 100
+
+# flip a coin to blur image
+blur = random.randint(0, 1)
+if blur == 0:
+    pad = random.randint(0, len(treedata[0])) % 100
+# else reset pad in the loop
 for h in range(height):
     row = []
     for w in range(width):
-        # accidentally discovered that changing the pad in this loop
-        # creates a blurring effect on the original image... didn't want that
-        # pad = random.randint(0, len(treedata[0])) % 100
+    	# reset pad each iteration to create a blur effect
+        if blur == 1:
+            pad = random.randint(0, len(treedata[0])) % 100
         for x in treedata[h,(w + pad + 40),:3]:
             if x == 0:
                 transform = h + random.randint(0, h //2)
@@ -50,11 +55,11 @@ for i in range(num_chunks):
 	r_height = random.randint(1, height // 4)
     # get a random width for the chunk
 	r_width = random.randint(1, width * 3 // 4)
-	
+
     # to prevent the random h and w from going out of bounds
 	r_height = round_dims(height, rh_start, r_height)
 	r_width = round_dims(width*3, rw_start, r_width)
-    
+
     # add each chunk to a list
 	chunks.append(Chunk(rh_start, rw_start, r_height, r_width))
 
@@ -74,8 +79,8 @@ for chunk in chunks:
             # otherwise, draw!
 			for p in range(3): # to change each R, G, B values
 				# print('at [%d, %d]' %((chunk.h_start + h), (chunk.w_start + w)))
-				val = random.randint(0, chunk.w_start // chunk.h_start+1) + h * w % 256
+				val = random.randint(0, chunk.w_start // (chunk.h_start+1)) + h * w % 256
 				imagedata[chunk.h_start + h][chunk.w_start + w + p] = random.randint(0, 255)
 
-# save chunk image
-chunkpng = png.from_array(imagedata, 'RGB').save('rickey_out1.png')
+# save image
+chunkpng = png.from_array(imagedata, 'RGB').save('rickey_out3.png')

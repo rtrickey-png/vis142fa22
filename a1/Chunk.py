@@ -10,7 +10,7 @@ class Chunk:
 		self.height = height
 		self.width = width
 	
-	def draw(self):
-		for h in range(height):
-			for w in range(width):
-				return 0
+	# def draw(self):
+	# def generate(self, x, y, r_x, r_y):
+		
+		

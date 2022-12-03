@@ -27,8 +27,8 @@ height = 1080
 #####################################################################
 # Name and title, update to your name and title
 #####################################################################
-name = "Student Student"
-title = "Title of student's work" 
+name = "Ryan Rickey"
+title = "Tree or something" 
 
 #####################################################################
 # IMPORTANT - you will get your start sequence number from your TA
@@ -36,7 +36,7 @@ title = "Title of student's work"
 # be part of the class reel, as in every student must have different
 # start sequence numbers.
 #####################################################################
-start_sequence_num = 1000000 # CHANGE HERE
+start_sequence_num = 5045000 # CHANGE HERE
 
 # Do not change these variables
 # normal pygame stuff

@@ -63,7 +63,7 @@ def round_dims(max_dim, start_dim, dim):
 	if start_dim + dim > max_dim:
 		return max_dim - start_dim
 	return dim
-
+"""
 # pick a random number of chunks
 # was formerly at 111, like ten seconds on rbpi tho
 num_chunks = random.randint(1, 55)
@@ -106,6 +106,6 @@ for chunk in chunks:
 				# print('at [%d, %d]' %((chunk.h_start + h), (chunk.w_start + w)))
 				val = random.randint(0, chunk.w_start // (chunk.h_start+1)) + h * w % 256
 				# imagedata[chunk.h_start + h][chunk.w_start + w + p] = random.randint(0, 255)
-
+"""
 # save image
-chunkpng = png.from_array(imagedata, 'RGB').save('rickey_out3.png')
+tree_bg = png.from_array(imagedata, 'RGB').save('tree_bg.png')

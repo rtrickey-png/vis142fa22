@@ -36,7 +36,7 @@ title = "Tree or something"
 # be part of the class reel, as in every student must have different
 # start sequence numbers.
 #####################################################################
-start_sequence_num = 5045000 # CHANGE HERE
+start_sequence_num = 5045000# CHANGE HERE
 
 # Do not change these variables
 # normal pygame stuff
@@ -67,6 +67,47 @@ def make_black():
 # this object is just for example purposes - Don't use this class
 # unless of course to change it to be different from my circle foo
 # using objects will make project 2 generally easier however
+class Chunk:
+	loc_x = 0
+	lox_y = 0
+	size = 30
+	skin = pygame.image.load('random.png')
+	speed = 1
+	xmult = 1
+	ymult = 1
+	stopped = 1
+	
+	def __init__(self, loc_x, loc_y, size):
+		self.loc_x = loc_x
+		self.loc_y = loc_y
+		self.size = size
+		
+	def draw(self):
+		screen.blit(self.skin, (self.loc_x, self.loc_y))
+	
+	def dead(self):
+		if self.loc_y + size == height:
+			return 1
+		return 0
+
+	def change_dir():
+		change = random.randint(0, 50)
+		if change >= 40:
+			xmult = xmult * -1
+	
+	def update(self):
+		if self.dead() != 1 and self.stopped != 1:
+			self.drop()
+			self.change_dir()
+			self.loc_x += 1 * self.xmult
+			self.loc_y += 1 * self.ymult
+	
+	def drop(self):
+		d = random.randint(0, 1000)
+		if d >= 700:
+			stopped = 0
+
+"""	
 class ActiveCircle:
     color = (15,15,15)
     locationX = 0
@@ -95,8 +136,9 @@ class ActiveCircle:
             self.size = 125 
         pygame.draw.circle(screen, self.color, \
             (self.locationX, self.locationY), self.size, 1)
+"""
 ################################ end object
-
+"""
 # this is the credits loop, which puts the title of your work
 # and your name on the screen
 make_black() # one second black
@@ -104,26 +146,36 @@ make_black() # one second black
 screen.fill((0,0,0))
 screen.blit(name_f, (int(width/8), int(width/8)))
 screen.blit(title_f, (int(width/8), int(width/4))) 
-for i in range(0, 3*60):
+ror i in range(0, 3*60):
     pygame.display.update()
     pygame.image.save(screen, "./frames/" + str(frame_num) + ".png")
     frame_num = frame_num + 1
     clock.tick(60)
 make_black() # one second black
+"""
+# set background image to tree
+bg = pygame.image.load('tree_bg.png')
 
 # make a list of active things
-active_circle_things = []
-for i in range (0, width + height):
-    active_circle_things.append(ActiveCircle())
+# active_circle_things = []
+# for i in range (0, width + height):
+#     active_circle_things.append(ActiveCircle())
+
+leaves = []
+for i in range (0, 40):
+	start_x = random.randint(0, 333)
+	start_y = random.randint(0, 555)
+	r_size = random.randint(0, 30)	
+	leaves.append(Chunk((height - 837) // 4 + start_x, (width - 893) - start_y, r_size))
 
 # here is the main animation loop
 for i in range(0, 20*60): # 20*60 frames is 20 seconds
     #########################################################
     # in the skeleton, your animation goes from here ########
     #########################################################
-    screen.fill((0,0,0))
-    for thing in active_circle_things:
-        thing.draw()
+    screen.blit(bg, (0,0))
+    for l in leaves:
+         l.draw()
     #########################################################
     # to here ###############################################
     #########################################################

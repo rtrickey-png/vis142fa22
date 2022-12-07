@@ -164,7 +164,7 @@ for i in range(0, 20*60): # 20*60 frames is 20 seconds
     # The next line can be commented out to speed up testing frame rate
     # by not writing the file. But for output to final frames,
     # you will need to ucomment it.
-    #pygame.image.save(screen, "./frames/" + str(frame_num) + ".png")
+    pygame.image.save(screen, "./frames/" + str(frame_num) + ".png")
     frame_num = frame_num + 1
     pygame.display.update()
     clock.tick(60)
